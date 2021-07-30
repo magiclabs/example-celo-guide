@@ -1,25 +1,15 @@
 # Resources
-- [GitHub Repo](https://github.com/magiclabs/example-celo-guide)
+- [Web App GitHub Repo](https://github.com/magiclabs/example-celo-guide)
 - [Web app Demo](https://magic-celo.vercel.app/login)
-- [GitHub Repo](https://github.com/magiclabs/example-celo-rn-guide)
-- [Mobile app Demo](https://snack.expo.dev/@hcote/c26a73)
+- [React Native App GitHub Repo](https://github.com/magiclabs/example-celo-guide-rn)
+<!-- - [Mobile app Demo](https://snack.expo.dev/@hcote/c26a73) -->
 - [Celo Alfajores Testnet](https://alfajores-blockscout.celo-testnet.org)
-
-# Quick Start (web app)
-
-```
-$ git clone https://github.com/magiclabs/example-celo-guide.git
-$ cd example-celo
-$ mv .env.local .env // enter your Test API Key into .env (from https://dashboard.magic.link)
-$ yarn install
-$ yarn start
-```
 
 # What is Celo
 
 Celo is a mobile-first, EVM-compatible blockchain built for payment-focused decentralized applications. Having a mobile-first approach, apps built on Celo can reach a wider audience, with the nearly 4 billion smart phone users world-wide. And to fit the payment-focused narrative, Celo has a Celo Dollar (`cUSD`) native stablecoin so that transactions aren't exposed to price volatility. 
 
-Other reasons developers may consider Celo over other blockchains is that transactions are confirmed fast, usually in just a few seconds, with very low transaction fees. Using Celo with Magic, your users can authenticate through a web2-like login experience on your mobile or web app, and not have to worry about managing or securing their private keys themselves. 
+Other reasons developers may consider Celo is that transactions are confirmed fast, usually in just a few seconds, with very low transaction fees. Using Celo with Magic, your users can authenticate through a web2-like login experience on your mobile or web app, and not have to worry about managing or securing their private keys themselves. 
 
 To connect to Celo with Magic, developers can simply pass in the Celo network URL when initiating a Magic instance. This guide will show how you can build a basic dapp on the Celo blockchain, allow users to call smart contracts and send transactions.
 
@@ -28,6 +18,16 @@ To connect to Celo with Magic, developers can simply pass in the Celo network UR
 This application will be broken out into two parts. Part 1 will be building a web app, and part 2 will be building a React Native mobile app. 
 
 # Part 1 - Web App
+
+## Quick Start
+
+```
+$ git clone https://github.com/magiclabs/example-celo-guide.git
+$ cd example-celo-guide
+$ mv .env.local .env // enter your API Key into .env (from https://dashboard.magic.link)
+$ yarn install
+$ yarn start
+```
 
 ## Connecting to Celo
 
@@ -171,6 +171,34 @@ And that's all that's involved for building a web app on Celo! A user can view t
 
 Since Celo is a mobile-first blockchain, this will also be covering how you can build a react native app on this blockchain, with the same functionality as the web app example above.
 
+## Quick Start
+
+```
+$ git clone https://github.com/magiclabs/example-celo-guide-rn.git
+$ cd example-celo-guide-rn
+$ mv .env.local .env // enter your API Key into .env (from https://dashboard.magic.link)
+$ yarn install
+$ yarn start
+```
+
+## React Native App Setup
+
+Run `$ expo init` (must have the expo-cli installed globally) and select the `blank` template to create our expo app. 
+
+Use this command to install the dependencies you'll need: `$ yarn add @magic-sdk/react-native node-libs-browser react-native-webview web3`.
+
+Note: if you run into an error such as `"Crypto" could not be found within the project`, craete a file called `metro.config.js` at the root of your project and add to it the following contents:
+
+```js
+module.exports = {
+  resolver: {
+    extraNodeModules: require('node-libs-browser'),
+  },
+};
+```
+
+After these setup steps, you're good to start building!
+
 ## Connecting to Celo
 
 In `magic.js`, pass in the Celo network URL you want to connect to (Alfajores Testnet in this case) and initialize a new `Web3` instance using Magic as the `rpc provider`. 
@@ -191,8 +219,6 @@ export const web3 = new Web3(magic.rpcProvider);
 ## Logging in with Magic
 
 When users log in with Magic (through clicking on a link sent to their email), they will automatically be generated an ethereum-compatible public / private key pair. Once logged in, a user can deposit funds to their newly created address, and as the developer, you can build out the wallet UI and logic with web3 libraries such as web3.js or ethers.js.
-
-<IMG>
 
 ```js
 export default function App() {
@@ -229,6 +255,7 @@ export default function App() {
           // Show Logged In User View
         </ScrollView>
       }
+      <magic.Relayer /> // Required to render the `Relayer` component into our app for Magic to properly work
     </View>
   );
 }
@@ -322,4 +349,5 @@ return (
 ## Done
 
 You now have a web and mobile app built on Celo, which lets users login/create a wallet with just a magic link and interact with the Celo blockchain. 
+
 
