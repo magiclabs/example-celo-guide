@@ -176,7 +176,7 @@ Since Celo is a mobile-first blockchain, this will also be covering how you can 
 ```
 $ git clone https://github.com/magiclabs/example-celo-guide-rn.git
 $ cd example-celo-guide-rn
-$ mv .env.local .env // enter your API Key into .env (from https://dashboard.magic.link)
+// enter your API key from https://dashboard.magic.link into the `Magic()` constructor in `magic.js`
 $ yarn install
 $ yarn start
 ```
@@ -207,7 +207,7 @@ In `magic.js`, pass in the Celo network URL you want to connect to (Alfajores Te
 import { Magic } from '@magic-sdk/react-native';
 import Web3 from 'web3';
 
-export const magic = new Magic('pk_test_C14E63531D0A7D2F', {
+export const magic = new Magic('YOUR_MAGIC_API_KEY', {
   network: {
     rpcUrl: 'https://alfajores-forno.celo-testnet.org'
   }
@@ -255,7 +255,8 @@ export default function App() {
           // Show Logged In User View
         </ScrollView>
       }
-      <magic.Relayer /> // Required to render the `Relayer` component into our app for Magic to properly work
+      {/* Below line is required to render the `Relayer` component into our app for Magic to properly work */}
+      <magic.Relayer />
     </View>
   );
 }
