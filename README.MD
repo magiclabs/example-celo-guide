@@ -24,7 +24,7 @@ This application will be broken out into two parts. Part 1 will be building a we
 ```
 $ git clone https://github.com/magiclabs/example-celo-guide.git
 $ cd example-celo-guide
-$ mv .env.local .env // enter your API Key into .env (from https://dashboard.magic.link)
+$ mv .env.example .env // enter your API Key into .env (from https://dashboard.magic.link)
 $ yarn install
 $ yarn start
 ```
@@ -48,7 +48,7 @@ export const web3 = new Web3(magic.rpcProvider);
 
 ## Login with Magic
 
-When users log in with Magic (through clicking on a link sent to their email), they will automatically be generated an ethereum-compatible public / private key pair. Once logged in, a user can deposit funds to their newly created address, and as the developer, you can build out the wallet UI and logic with web3 libraries such as web3.js or ethers.js. 
+When users log in with Magic (through clicking on a link sent to their email), they will automatically be generated a Celo public / private key pair. Once logged in, a user can deposit funds to their newly created address, and as the developer, you can build out the wallet UI and logic with web3 libraries such as web3.js or ethers.js. 
 
 ```js
 const login = useCallback(async () => {
