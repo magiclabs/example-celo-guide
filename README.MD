@@ -2,7 +2,6 @@
 - [Web App GitHub Repo](https://github.com/magiclabs/example-celo-guide)
 - [Web app Demo](https://magic-celo.vercel.app/login)
 - [React Native App GitHub Repo](https://github.com/magiclabs/example-celo-guide-rn)
-<!-- - [Mobile app Demo](https://snack.expo.dev/@hcote/c26a73) -->
 - [Celo Alfajores Testnet](https://alfajores-blockscout.celo-testnet.org)
 
 # What is Celo
